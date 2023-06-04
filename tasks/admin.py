@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Task, UsuarioCliente
+from .models import Servicio, UsuarioCliente, UsuarioGuia
 # Register your models here.
-admin.site.register(Task)
+admin.site.register(Servicio)
 admin.site.register(UsuarioCliente)
+admin.site.register(UsuarioGuia)
