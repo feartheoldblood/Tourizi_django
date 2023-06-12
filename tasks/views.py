@@ -5,9 +5,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from .forms import TaskForm
-from .models import Task
+from .models import Servicio, UsuarioPersonalizado
 from django.utils import timezone
-from django.contrib.auth.decorators import login_required
+#from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -20,12 +20,12 @@ def hello(request):
 
 def task_detail(request, task_id):
     if request.method == 'GET':
-        task = get_object_or_404(Task,pk=task_id, user=request.user) 
+        task = get_object_or_404(Servicio, pk=task_id, user=request.user) 
         form = TaskForm(instance=task)
         return render(request, 'task_detail.html', {'task': task, 'form': form})
     else:
         try:
-            task = get_object_or_404(Task,pk=task_id, user=request.user) 
+            task = get_object_or_404(Servicio, pk=task_id, user=request.user) 
             form = TaskForm(request.POST, instance=task)
             form.save()       
             return redirect('home')
@@ -34,7 +34,7 @@ def task_detail(request, task_id):
             'error':"Error updating task"})
 
 def complete_task(request, task_id):
-    task = get_object_or_404(Task, pk=task_id, user=request.user)
+    task = get_object_or_404(Servicio, pk=task_id, user=request.user)
     if request.method == 'POST':
         task.datecompleted = timezone.now()
         task.save()
@@ -42,7 +42,7 @@ def complete_task(request, task_id):
 
 
 def delete_task(request, task_id):
-    task = get_object_or_404(Task, pk=task_id, user=request.user)
+    task = get_object_or_404(Servicio, pk=task_id, user=request.user)
     if request.method == 'POST':
         task.delete()
         return redirect('tasks')
@@ -63,7 +63,7 @@ def signup(request):
         if request.POST['password1'] == request.POST['password2']:
             try:
                 # register user
-                user = User.objects.create_user(
+                user = UsuarioPersonalizado.objects.create_user(
                     username=request.POST['username'], password=request.POST['password1'])
                 user.save()
                 login(request, user)
@@ -82,11 +82,11 @@ def signup(request):
 
 
 def tasks(request):
-    tasks = Task.objects.filter(user=request.user, datecompleted__isnull=True)
+    tasks = Servicio.objects.filter(user=request.user)
     return render(request, 'tasks.html', {'tasks': tasks})
 
 def tasks_completed(request):
-    tasks = Task.objects.filter(user=request.user, datecompleted__isnull=False).order_by('-datecompleted')
+    tasks = Servicio.objects.filter(user=request.user).order_by('-datecompleted')
     return render(request, 'tasks.html', {'tasks': tasks})
 
 
@@ -132,5 +132,4 @@ def signin(request):
         else:
             login(request, user)
             return redirect('tasks')
-
 
