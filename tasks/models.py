@@ -5,7 +5,8 @@ from django.contrib.auth.models import User
 
 
 class UsuarioPersonalizado(models.Model):
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    username = models.ForeignKey(User, on_delete=models.CASCADE)
+    password = models.CharField(max_length=15, unique=True, blank=True )
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
     pais = models.CharField(max_length=100)

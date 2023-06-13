@@ -9,6 +9,6 @@ class TaskForm(ModelForm):
 class UsuarioCustomForm(ModelForm):
     class Meta:
         model = UsuarioPersonalizado
-        fields = ['usuario', 'nombre', 'apellido', 'pais', 'es_Guia', 'es_Cliente']
+        fields = ['username', 'password', 'nombre', 'apellido', 'pais', 'es_Guia', 'es_Cliente']
 
 

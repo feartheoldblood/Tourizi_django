@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
-from .forms import TaskForm
+from .forms import TaskForm, UsuarioCustomForm
 from .models import Servicio, UsuarioPersonalizado
 from django.utils import timezone
 #from django.contrib.auth.decorators import login_required
@@ -63,8 +63,11 @@ def signup(request):
         if request.POST['password1'] == request.POST['password2']:
             try:
                 # register user
-                user = UsuarioPersonalizado.objects.create_user(
-                    username=request.POST['username'], password=request.POST['password1'])
+                user = UsuarioPersonalizado.objects.create(
+                    username=User.objects.get(username=request.POST["username"]), password=request.POST['password1'])
+                #nombre = request.POST['nombre'],
+                    #apellido = request.POST['apellido'], pais = request.POST['pais'], es_Guia = request.POST['es_Guia'],
+                    #es_Cliente = request.POST['es_Cliente']
                 user.save()
                 login(request, user)
                 return redirect('tasks')
