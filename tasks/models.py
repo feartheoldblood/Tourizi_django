@@ -10,49 +10,41 @@ from django.utils.text import slugify
 
 # Create your models here.
 
-class CustomAccountManager(BaseUserManager):
-    def create_user(self, nombre, password, username, apellido, **otherfields):
+class UsuarioManager(BaseUserManager):
+    def create_user(self, nombre, username, apellido, password = None):
 
-        if not username:
-            raise ValueError(_('Tienes que dar un username'))
+        if not nombre:
+            raise ValueError(_('Tienes que dar un nombre'))
 
-        user = self.model(username = username, nombre = nombre,
-                              apellido = apellido, **otherfields)
-        user.set_password(password)
-        user.save()
-        return user
+        usuario = self.model(username = username, nombre = nombre, apellido = apellido)
+        usuario.set_password(password)
+        usuario.save()
+        return usuario
     
-    def create_superuser(self, nombre, password, username, apellido, **other_fields):
+    def create_superuser(self, nombre, apellido, password, username):
 
-        other_fields.setdefault('is_staff', True)
-        other_fields.setdefault('is_superuser', True)
-        other_fields.setdefault('is_active', True)
+        usuario = self.create_user(username = username, nombre = nombre, password = password, apellido = apellido
+                    
+        )
 
-        if other_fields.get('is_staff') is not True:
-            raise ValueError(
-                'Superuser must be assigned to is_staff=True.')
-        if other_fields.get('is_superuser') is not True:
-            raise ValueError(
-                'Superuser must be assigned to is_superuser=True.')
-
-        return self.create_user(nombre, password, username, apellido, **other_fields)
-        
+        usuario.is_staff = True
+        usuario.save()
+        return usuario
 
 class UsuarioPersonalizado(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=100, unique=True)
-    nombre = models.CharField(max_length=100)
-    apellido = models.CharField(max_length=100)
-    pais = models.CharField(max_length=100)
+    nombre = models.CharField(max_length=100, blank=True, null=True)
+    apellido = models.CharField(max_length=100, blank=True, null=True)
+    pais = models.CharField(max_length=100, blank=True)
     es_Guia = models.BooleanField(default=False, blank=True)
     es_Cliente = models.BooleanField(default=True, blank=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
-    objects = CustomAccountManager()
+    objects = UsuarioManager()
 
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['nombre', 'apellido', 'pais'
-                       ,'es_Guia', 'es_Cliente']
+    REQUIRED_FIELDS = ['nombre', 'apellido']
 
 class Servicio(models.Model):
     nombre = models.CharField(max_length=100)
@@ -63,3 +55,6 @@ class Servicio(models.Model):
     userUsuarioCustom = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 
+@property
+def is_staff(self):
+    return self.is_staff

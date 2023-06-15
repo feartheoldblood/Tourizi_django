@@ -3,137 +3,61 @@ from django.forms import ModelForm
 from .models import Servicio, UsuarioPersonalizado
 
 
-class UserLoginForm(forms.Form):
+class FormularioUsuario(forms.ModelForm):
+    """Formulario de registro de un usuario en la bd"""
+    """Password 1 es la contraseña y password 2 es la verificacion"""
 
+    password1 = forms.CharField(label = 'Contraseña', widget = forms.PasswordInput(
+        attrs = {
+            'class':'form-control',
+            'placeholder':'Ingrese su contraseña...',
+            'id': 'password1',
+            'required': 'required',
+        }
+    ))
 
-    username = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                'id': 'loginUsername',
-                'type': 'username',
-                'class': 'form-control'
-            }
-        )
-    )
-
-    password = forms.CharField(
-    widget=forms.PasswordInput(attrs={
-            'id': 'loginPassword',
-            'type': 'password',
-            'class': 'form-control',
-        })
-    )
-
-class UserSignUpForm(forms.Form):
-
-
-
+    password2 = forms.CharField(label = 'Contraseña de confirmacion',
+        widget = forms.PasswordInput( attrs = {
+            'class':'form-control',
+            'placeholder':'Ingrese nuevamente su contraseña...',
+            'id': 'password2',
+            'required': 'required',
+        }
+     ))
     
-
-    username = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                'id': 'signupUsername',
-                'type': 'username',
-                'class': 'form-control'
-            }
-        )
-    )
-
-    password = forms.CharField(
-        widget=forms.PasswordInput(
-            attrs={
-                'id': 'signupPassword',
-                'type': 'password',
-                'class': 'form-control'
-            }
-        ))
-
-    password2 = forms.CharField(
-        widget=forms.PasswordInput(
-            attrs={
-                'type': 'password',
-                'class': 'form-control'
-            }
-        ))
-
-
-    nombre = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                'type': 'nombre',
-                'class': 'form-control'
-            }
-        )
-    )
-
-    apellido = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                'type': 'apellido',
-                'class': 'form-control'
-            }
-        )
-    )
-
-    pais = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                'type': 'pais',
-                'class': 'form-control'
-            }
-        )
-    )
-
-    es_Guia = forms.BooleanField(
-        widget=forms.CheckboxInput(
-            attrs={
-                'type': 'es_Guia',
-                'class': 'form-control'
-            }
-        )
-    )
-
-    es_Cliente = forms.BooleanField(
-        widget=forms.CheckboxInput(
-            attrs={
-                'type': 'es_Cliente',
-                'class': 'form-control'
-            }
-
-        )
-    )
-
-    
-    def clean_password2(self):
-        cd = self.cleaned_data
-        if cd['password'] != cd['password2']:
-            raise forms.ValidationError('Las Contraseñas no coinciden')
-        return cd['password2']
-
-
-
-
-
-    
-
-    
-
-    
-
-
-
-
-
-
-"""class TaskForm(ModelForm):
-    class Meta:
-        model= Servicio
-        fields= ['nombre', 'precio', 'ruta', 'HoraInicio', 'HoraFin', 'userUsuarioCustom']
-
-class UsuarioCustomForm(ModelForm):
     class Meta:
         model = UsuarioPersonalizado
-        fields = ['username', 'nombre', 'apellido', 'pais', 'es_Guia', 'es_Cliente']
-"""
+        fields = ('username', 'nombre', 'apellido')
+        widget = {
+            'username': forms.TextInput(
+                attrs = {
+                    'class' : 'form-control',
+                    'placeholder': 'Correo username',
+                }
+            ),
+            'nombre': forms.TextInput(
+                attrs={
+                    'class' : 'form-control',
+                    'placeholder' : 'Ingrese su nombre',
+                }        
+            ),
+            'apellido': forms.TextInput(
+                attrs={
+                    'class' : 'form-control',
+                    'placeholder' : 'Ingrese sus apellidos'
+                }
+            )
+        }
+
+
+    
+
+    
+
+    
+
+
+
+
+
 

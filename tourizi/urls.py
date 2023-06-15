@@ -16,21 +16,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.contrib.auth.decorators import login_required
 
+from tasks.views import ListadoUsuario, signup
 from tasks import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name= 'home'),
-    path('signup/', views.signup, name ='signup' ),
+    #path('signup/', views.signup, name ='signup' ),
     path('tasks/', views.tasks, name ='tasks' ),
-    path('tasks_completed/', views.tasks_completed, name ='tasks_completed' ),
+
     path('logout/', views.signout, name ='logout' ),
-    path('signin/', views.signin, name ='signin' ),
-    #path('tasks/create/', views.create_task, name ='create_task' ),
-    #path('tasks/<int:task_id>/', views.task_detail , name= 'task_detail'),
-    #path('tasks/<int:task_id>/complete', views.complete_task, name= 'complete_task'),
-    #path('tasks/<int:task_id>/delete', views.delete_task  , name= 'delete_task'),
+    #path('signin/', views.signin, name ='signin' ),
+    path('listado_usuarios/', ListadoUsuario.as_view(), name ='listar_usuarios'),
+    path('registrar_usuario/', signup.as_view(), name = 'registrar_usuario')
 
 ] 
 
