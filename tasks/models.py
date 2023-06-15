@@ -57,4 +57,7 @@ class Servicio(models.Model):
     HoraInicio = models.DateTimeField(null=True, blank=True)
     HoraFin = models.DateTimeField(null=True, blank=True)
     userUsuarioCustom = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    cantidadpasajeros = models.IntegerField(blank=True, null=True)
+    detallesadicionales = models.TextField(blank=True)
+    incluircomida = models.BooleanField(default=False)
 

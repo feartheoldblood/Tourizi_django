@@ -7,7 +7,7 @@ from .models import Servicio, UsuarioPersonalizado
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
-from .forms import FormularioUsuario, FormularioLogin
+from .forms import FormularioUsuario, FormularioLogin, ServicioForm
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 from django.utils.decorators import method_decorator
@@ -70,8 +70,23 @@ def signout(request):
     logout(request)
     return redirect('home')
 
-
-
+def crearservicio(request):
+    if request.method == 'GET':
+        return render(request, 'create_servicio.html', {
+            'form': ServicioForm
+        })
+    else:
+        try:
+            form = ServicioForm(request.POST)
+            new_servicio = form.save(commit=False)
+            new_servicio.user = request.user
+            new_servicio.save()
+            return redirect('tasks')
+        except ValueError:
+            return render(request, 'create_servicio.html',{
+                'form': ServicioForm,
+                'error': 'Pleade provide valed data'
+            })
  
 
 

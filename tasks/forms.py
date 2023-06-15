@@ -3,6 +3,12 @@ from django.forms import ModelForm
 from .models import Servicio, UsuarioPersonalizado
 from django.contrib.auth.forms import AuthenticationForm
 
+class ServicioForm(forms.ModelForm):
+    class Meta:
+        model= Servicio
+        fields= ['nombre', 'precio', 'ruta', 'HoraInicio', 'HoraFin', 'userUsuarioCustom','cantidadpasajeros'
+        ,'detallesadicionales','incluircomida']
+
 class FormularioLogin(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super(FormularioLogin, self).__init__(*args,**kwargs)
@@ -97,7 +103,7 @@ class FormularioUsuario(forms.ModelForm):
             user.save()
         return user
     
-
+    
     
 
     
