@@ -16,7 +16,9 @@
                     <th>Username</th>
                     <th>Nombres</th>
                     <th>Apellidos</th>
-                    <th>Opciones</th>
+                    <th>Pais</th>
+                    <th>¿Es un Guia?</th>
+                    <th>¿Es un Cliente?</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +30,10 @@
                         {{ UsuarioPersonalizado.nombre }}
                     </td>
                     <td>{{ UsuarioPersonalizado.apellido }}</td>
+                    
+                    <td>{{ UsuarioPersonalizado.pais }}</td>
+                    <td>{{ UsuarioPersonalizado.es_Guia }} </td>
+                    <td>{{ UsuarioPersonalizado.es_Cliente }}</td>
                     <td>
                         <a href = "" class = "btn btn danger">Eliminar</a>
                         <a href = "" class = "btn btn-primary">Editar</a>

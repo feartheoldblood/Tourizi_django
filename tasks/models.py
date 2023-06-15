@@ -11,11 +11,14 @@ from django.utils.text import slugify
 # Create your models here.
 
 class UsuarioManager(BaseUserManager):
-    def _create_user(self, username, nombre, apellido, password, is_staff, is_superuser, **extra_fields):
+    def _create_user(self, username, nombre, apellido, pais, es_Guia, es_Cliente,  password, is_staff, is_superuser, **extra_fields):
         user = self.model(
             username=username,
             nombre=nombre,
             apellido = apellido,
+            pais = pais,
+            es_Guia = es_Guia,
+            es_Cliente = es_Cliente,
             is_staff=is_staff,
             is_superuser=is_superuser,
             **extra_fields
@@ -24,11 +27,11 @@ class UsuarioManager(BaseUserManager):
         user.save(using=self.db)
         return user
 
-    def create_user(self, username, nombre, apellido, is_staff, password=None, **extra_fields):
-        return self._create_user(username, nombre, apellido, password, is_staff, False, **extra_fields)
+    def create_user(self, username, nombre, apellido, pais, es_Guia, es_Cliente, is_staff, password=None, **extra_fields):
+        return self._create_user(username, nombre, apellido, pais, es_Guia, es_Cliente, password, is_staff, False, **extra_fields)
     
-    def create_superuser(self,username,nombre,apellido,password = None,**extra_fields):
-        return self._create_user(username, nombre, apellido, password, True, True, **extra_fields)
+    def create_superuser(self,username,nombre,apellido, pais, es_Guia, es_Cliente, password = None,**extra_fields):
+        return self._create_user(username, nombre, apellido, pais, es_Guia, es_Cliente, password, True, True, **extra_fields)
 
 
 

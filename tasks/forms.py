@@ -35,7 +35,7 @@ class FormularioUsuario(forms.ModelForm):
     
     class Meta:
         model = UsuarioPersonalizado
-        fields = ('username', 'nombre', 'apellido')
+        fields = ('username', 'nombre', 'apellido', 'pais', 'es_Guia', 'es_Cliente')
         widget = {
             'username': forms.TextInput(
                 attrs = {
@@ -53,6 +53,24 @@ class FormularioUsuario(forms.ModelForm):
                 attrs={
                     'class' : 'form-control',
                     'placeholder' : 'Ingrese sus apellidos'
+                }
+            ),
+            'pais' : forms.TextInput(
+                attrs = {
+                    'class' : 'form-control',
+                    'placeholder' : 'Ingrese su pais de residencia'
+                }
+            ),
+            'es_Guia' : forms.CheckboxInput(
+                attrs = {
+                    'class' : 'form-control',
+                    'placeholder' : '¿Usted es guia?'
+                }
+            ),
+            'es_Cliente' : forms.CheckboxInput(
+                attrs = {
+                    'class' : 'form-control',
+                    'placeholder' : '¿Usted es cliente?'
                 }
             )
         }
