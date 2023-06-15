@@ -11,25 +11,26 @@ from django.utils.text import slugify
 # Create your models here.
 
 class UsuarioManager(BaseUserManager):
-    def create_user(self, nombre, username, apellido, password = None):
-
-        if not nombre:
-            raise ValueError(_('Tienes que dar un nombre'))
-
-        usuario = self.model(username = username, nombre = nombre, apellido = apellido)
-        usuario.set_password(password)
-        usuario.save()
-        return usuario
-    
-    def create_superuser(self, nombre, apellido, password, username):
-
-        usuario = self.create_user(username = username, nombre = nombre, password = password, apellido = apellido
-                    
+    def _create_user(self, username, nombre, apellido, password, is_staff, is_superuser, **extra_fields):
+        user = self.model(
+            username=username,
+            nombre=nombre,
+            apellido = apellido,
+            is_staff=is_staff,
+            is_superuser=is_superuser,
+            **extra_fields
         )
+        user.set_password(password)
+        user.save(using=self.db)
+        return user
 
-        usuario.is_staff = True
-        usuario.save()
-        return usuario
+    def create_user(self, username, nombre, apellido, is_staff, password=None, **extra_fields):
+        return self._create_user(username, nombre, apellido, password, is_staff, False, **extra_fields)
+    
+    def create_superuser(self,username,nombre,apellido,password = None,**extra_fields):
+        return self._create_user(username, nombre, apellido, password, True, True, **extra_fields)
+
+
 
 class UsuarioPersonalizado(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=100, unique=True)
@@ -54,7 +55,3 @@ class Servicio(models.Model):
     HoraFin = models.DateTimeField(null=True, blank=True)
     userUsuarioCustom = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
-
-@property
-def is_staff(self):
-    return self.is_staff

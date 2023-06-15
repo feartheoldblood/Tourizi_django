@@ -17,8 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth.decorators import login_required
-
-from tasks.views import ListadoUsuario, signup
+from tasks.views import ListadoUsuario, signup, Login
 from tasks import views
 
 urlpatterns = [
@@ -30,8 +29,8 @@ urlpatterns = [
     path('logout/', views.signout, name ='logout' ),
     #path('signin/', views.signin, name ='signin' ),
     path('listado_usuarios/', ListadoUsuario.as_view(), name ='listar_usuarios'),
-    path('registrar_usuario/', signup.as_view(), name = 'registrar_usuario')
-
+    path('registrar_usuario/', signup.as_view(), name = 'registrar_usuario'),
+    path('login/', Login.as_view(), name = 'login'),
 ] 
 
 
