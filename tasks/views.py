@@ -96,7 +96,7 @@ def signup(request):
                     username = username,
                     nombre = nombre,
                     apellido = apellido,
-                    password= password,
+                    password= make_password(password),
                     pais = pais,
 
                 )
