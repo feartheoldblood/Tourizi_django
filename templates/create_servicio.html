@@ -8,16 +8,24 @@
         <strong class = "card-title">Creacion de servicio</strong>
 
     </div>
-    <div class = "card-body">
-        <form method = "POST">
-            {% csrf_token %} 
-            {{ form.as_p }} 
-            <div class = "card-footer">
-                <a href = "{% url 'home' %} " class = "btn btn-danger">Cancelar</a>
-                <button type="submit" class = "btn btn-success">Registrar</button>
+    <body class="bg-white">
+        <div class = "sufee-login dflex align-content-center flex-wrap">
+            <div class = "container">
+                <div class = "login-content">
+                    <div class = "login-form">
+                        <div class = "card-body">
+                            <form method = "POST">
+                                {% csrf_token %} 
+                                {{ form.as_p }} 
+                                <div class = "card-footer">
+                                    <a href = "{% url 'home' %} " class = "btn btn-danger">Cancelar</a>
+                                    <button type="submit" class = "btn btn-success">Registrar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </form>
-    </div>
-</div>
-
+        </div>
+    </body> 
 {% endblock %}
