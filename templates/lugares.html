@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="home.css">
-  <link rel="stylesheet" href="lugares.css">
+  <link rel="stylesheet" href="{% static 'home.css' %}">
+  <link rel="stylesheet" href="{% static 'lugares.css' %}">
     <title>Lugares</title>
 </head>
 <body>
@@ -39,7 +40,9 @@
                     <div class="bottom-card-holder-wrapper">
                         <h4 class="title-wrapper">Teatro Británico</h4>
                         <p class="description-wrapper">
-                            Descripcion 1
+                            El Teatro Británico fue fundado en 1988 y forma parte del Centro Cultural Británico, bajo la
+                            administración de la Asociación Cultural Peruano Británica. Ofrece varios espectáculos culturales
+                            durante todo el año. 
                         </p>
                     </div>
                 </div>
@@ -50,7 +53,9 @@
                     <div class="bottom-card-holder-wrapper">
                         <h4 class="title-wrapper">Ruta de Mario Vargas Llosa</h4>
                         <p class="description-wrapper">
-                            Descripcion 2
+                            La ruta Mario Vargas Llosa o Literatour es el recorrido por los lugares donde vivió el flamante
+                            Nobel de Literatura, en diferentes etapas de su vida, y que también sirvieron de escenarios para sus personajes
+                            creados para sus novelas.
                         </p>
                     </div>
                 </div>
@@ -61,7 +66,9 @@
                     <div class="bottom-card-holder-wrapper">
                         <h4 class="title-wrapper">Larcomar</h4>
                         <p class="description-wrapper">
-                            Descripcion 3
+                            Es un centro comercial ubicado en el trayecto final de la avenida Larco en el distrito de Miraflores.
+                            También funciona como centro turístico debido a que se pueden realizar diversas actividades a sus
+                            alrededores; asi como, disfrutar de una vista al océano.
                         </p>
                     </div>
                 </div>
@@ -72,7 +79,9 @@
                     <div class="bottom-card-holder-wrapper">
                         <h4 class="title-wrapper">Parque Kennedy</h4>
                         <p class="description-wrapper">
-                            Descripcion 4
+                            Uno de los parques más visitados en Miraflores, el cual es llamativo por la cantidad de gatos que
+                            hay. Puedes disfrutar de una caminata, ver espectaculos de artistas locales en el anfiteatro
+                            Chabuca Granda, entre otras cosas. 
                         </p>
                     </div>
                 </div>
@@ -83,7 +92,9 @@
                     <div class="bottom-card-holder-wrapper">
                         <h4 class="title-wrapper">Circuito de playas</h4>
                         <p class="description-wrapper">
-                            Descripcion 5
+                            Popularmente conocido como Costa Verde por poseer una vegetación visible. Tiene una extensión de 6 km. 
+                            alredor de toda la costa donde puedes encontrar espacios para practicar deportes, actividades recreativas, 
+                            restaurantes, áreas de conciertos y más. 
                         </p>
                     </div>
                 </div>
@@ -94,7 +105,9 @@
                     <div class="bottom-card-holder-wrapper">
                         <h4 class="title-wrapper">Parroquia de la virgen milagrosa</h4>
                         <p class="description-wrapper">
-                            Descripcion 6
+                            Ubicada en el Parque Central de Miraflores, fue construida sobre la base de la antigüa iglesia San Miguel
+                            de Miraflores. Tiene una decoración interna caracterizada por sus vitrales, que reflejan, en orden los 
+                            diferentes episodios de la vida de Jesús.
                         </p>
                     </div>
                 </div>
@@ -105,7 +118,9 @@
                     <div class="bottom-card-holder-wrapper">
                         <h4 class="title-wrapper">Museo de la memoria, la tolerancia y la inclusión social</h4>
                         <p class="description-wrapper">
-                            Descripcion 7
+                            EL lugar de la Memoria, la Tolerancia y la Inclusión Social del Ministerio de Cultura del Perú es un
+                            espacio de conmemoración pedagógico y cultural que alberga la historia de violencia ocurrida en el 
+                            Perú entre los años 1980 y 2000.
                         </p>
                     </div>
                 </div>
@@ -116,7 +131,9 @@
                     <div class="bottom-card-holder-wrapper">
                         <h4 class="title-wrapper">Sala de arte Luis Miró Quesada</h4>
                         <p class="description-wrapper">
-                            Descripcion 8
+                            Es un centro de arte contemporáneo, fundado en 1984, sin fines de lucro donde se gestan proyectos
+                            individuales y colectivos, relacionados principalmente a las artes visuales. Gestionada por la 
+                            Gerencia de Cultura de la Municipalidad Distrital de Miraflores.
                         </p>
                     </div>
                 </div>
@@ -127,7 +144,9 @@
                     <div class="bottom-card-holder-wrapper">
                         <h4 class="title-wrapper">Parque Reducto N°2 Miraflores</h4>
                         <p class="description-wrapper">
-                            Descripcion 9
+                            Sirve como lugar para rendir honor a las personas que sacrificaron su vida durante la Guerra con Chile.
+                            En sus jardines se pueden ver monumentos a los heroes, una locomotora, así como el Museo Andrés
+                            Avelino Cáceres.
                         </p>
                     </div>
                 </div>
@@ -138,7 +157,7 @@
                     <div class="bottom-card-holder-wrapper">
                         <h4 class="title-wrapper">Museo de Sitio Huaca Pucllana</h4>
                         <p class="description-wrapper">
-                            Descripcion 10
+                            Es un sitio arqueológico perteneciente a la cultura Lima, del periodo de los desarrollos regionales.
                         </p>
                     </div>
                 </div>
