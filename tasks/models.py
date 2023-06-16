@@ -53,7 +53,11 @@ class Servicio(models.Model):
     nombre = models.CharField(max_length=100)
     precio = models.TextField(blank=True)
     ruta = models.TextField(blank=True)
-    HoraInicio = models.DateTimeField(null=True, blank=True)
-    HoraFin = models.DateTimeField(null=True, blank=True)
+    HoraInicio = models.TimeField(null=True, blank=True)
+    HoraFin = models.TimeField(null=True, blank=True)
     userUsuarioCustom = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    cantidadpasajeros = models.TextField(blank=True, null=True)
+    detallesadicionales = models.TextField(blank=True)
+    incluircomida = models.BooleanField(default=False)
+
 

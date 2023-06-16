@@ -97,6 +97,73 @@ class FormularioUsuario(forms.ModelForm):
             user.save()
         return user
     
+class ServicioForm(forms.ModelForm):
+    class Meta:
+        model= Servicio
+        fields= ('nombre', 'userUsuarioCustom', 'precio', 'ruta', 'HoraInicio', 'HoraFin', 'cantidadpasajeros'
+        ,'detallesadicionales','incluircomida')
+        widget = {
+            'nombre': forms.TextInput(
+                attrs = {
+                'class' : 'form-control',
+                'placeholder': 'nombre',
+                }
+            ),
+            'userUsuarioCustom': forms.TextInput(
+                attrs = {
+                'class' : 'form-control',
+                'placeholder': 'Username',
+                }
+            ),
+            'precio': forms.TextInput(
+                attrs = {
+                'class' : 'form-control',
+                'placeholder': 'precio',
+                }
+            ),
+            'ruta': forms.TextInput(
+                attrs = {
+                'class' : 'form-control',
+                'placeholder': 'ruta',
+                }
+            ),
+            'HoraInicio': forms.TimeInput(
+                attrs = {
+                'class' : 'form-control',
+                'placeholder': 'HoraInicio',
+                }
+            ),
+            'HoraFin': forms.TimeInput(
+                attrs = {
+                'class' : 'form-control',
+                'placeholder': 'HoraFin',
+                }
+            ),
+            'cantidadpasajeros': forms.TextInput(
+                attrs = {
+                'class' : 'form-control',
+                'placeholder': '¿Cantidad pasajeros?',
+                }
+            ),
+            'detallesadicionales': forms.TextInput(
+                attrs = {
+                'class' : 'form-control',
+                'placeholder': '¿Detalles adicionales?',
+                }
+            ),
+            'incluircomida': forms.CheckboxInput(
+                attrs = {
+                'class' : 'form-control',
+                'placeholder': '¿Desea incluir comida?',
+                }
+            ),
+
+                
+
+
+        }
+
+    
 
     
 

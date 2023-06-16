@@ -7,7 +7,7 @@ from .models import Servicio, UsuarioPersonalizado
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
-from .forms import FormularioUsuario, FormularioLogin
+from .forms import FormularioUsuario, FormularioLogin, ServicioForm
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 from django.utils.decorators import method_decorator
@@ -30,7 +30,7 @@ class Login(FormView):
     template_name = 'login.html'
     form_class = FormularioLogin
     #model = UsuarioPersonalizado
-    success_url = reverse_lazy('tasks')
+    success_url = reverse_lazy('servicio')
 
     @method_decorator(csrf_protect)
     @method_decorator(never_cache)
@@ -57,9 +57,13 @@ class signup(CreateView):
         model = UsuarioPersonalizado
         form_class = FormularioUsuario
         template_name = 'crear_usuario.html'
-        success_url = reverse_lazy('listar_usuarios')
+        success_url = reverse_lazy('servicio')
         
-
+class crearservicio(CreateView):
+        model = Servicio
+        form_class = ServicioForm
+        template_name = 'create_servicio.html'
+        success_url = reverse_lazy('tasks')
 
 
 def tasks(request):
@@ -69,6 +73,8 @@ def tasks(request):
 def signout(request):
     logout(request)
     return redirect('home')
+
+
 
 
 
