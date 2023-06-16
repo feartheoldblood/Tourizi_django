@@ -70,7 +70,7 @@ ROOT_URLCONF = 'tourizi.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [BASE_DIR /'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -137,3 +137,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STRIPE_PUBLIC_KEY = "pk_test_51NIMdQISVJQQrOv3e3zlZwVte0T4CdSg8luCRzkbo0PVzU28Y0HvXNJbcBRejwNdteX1gMaYW1MndxQ3C8jKlSTb00DcTAbgA6"
+STRIPE_SECRET_KEY = "sk_test_51NIMdQISVJQQrOv3EsOWJnwvlYWt2oaZG6OePSoEpuVJNYN71cRD3LOXIElOuaz24YdVNCy1VqmNXFQS6Uy8eKIk00vY2jAwkf"
+STRIPE_WEBHOOK_SECRET = "whsec_69f6de235d044ad826212c0168cfb1af02336dafc5f4d018253afe614f2fbdf3"
