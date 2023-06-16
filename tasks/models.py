@@ -30,9 +30,8 @@ class UsuarioManager(BaseUserManager):
     def create_user(self, username, nombre, apellido, pais, es_Guia, es_Cliente, is_staff, password=None, **extra_fields):
         return self._create_user(username, nombre, apellido, pais, es_Guia, es_Cliente, password, is_staff, False, **extra_fields)
     
-    def create_superuser(self,username,nombre,apellido, pais, es_Guia, es_Cliente, password = None,**extra_fields):
-        return self._create_user(username, nombre, apellido, pais, es_Guia, es_Cliente, password, True, True, **extra_fields)
-
+    def create_superuser(self, username, nombre, apellido, password=None, **extra_fields):
+        return self._create_user(username, nombre, apellido, '', False, False, password, True, True, **extra_fields)
 
 
 class UsuarioPersonalizado(AbstractBaseUser, PermissionsMixin):
