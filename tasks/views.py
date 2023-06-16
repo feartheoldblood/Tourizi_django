@@ -51,6 +51,11 @@ def delete_task(request, task_id):
 def home(request):
     return render(request, 'home.html')
 
+def somos(request):
+    return render(request, 'somos.html')
+
+def lugares(request):
+    return render(request, 'lugares.html')
 
 def signup(request):
 

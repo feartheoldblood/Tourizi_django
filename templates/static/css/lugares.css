@@ -1,0 +1,172 @@
+.properties-dave-grid-col-3-wrapper {
+    margin: 3rem auto;
+}
+.properties-dave-grid-col-3-wrapper .title-container-main {
+    color: #3c3c3c;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 58px;
+    margin: 0.5rem auto;
+    max-width: 64.75rem;
+    padding: 0 1rem;
+}
+h3, h4 {
+    font-weight: 700;
+    line-height: 1.28571429em;
+    margin: calc(2rem - 0.14286em) 0 1rem;
+    padding: 0;
+}
+h1, h2, h3, h4, h5 {
+    font-family: Larsseit,Basis Grotesque,Helvetica Neue,Lucida Grande,Arial;
+}
+blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
+    margin: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+.properties-dave-grid-col-3-wrapper .description-wrapper {
+    align-items: center;
+    display: flex;
+    margin: 0 auto;
+    max-width: 64.75rem;
+    padding: 0.5rem 1rem 1rem;
+    width: auto;
+}
+.properties-dave-grid-col-3-wrapper .description-wrapper .paragraph-wrapper {
+    color: #505050;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px;
+}
+.properties-dave-grid-col-3-wrapper .flex-wrapper-main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 1rem auto;
+    max-width: 64.75rem;
+}
+.flex-wrapper-main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 1rem auto;
+    max-width: 64.75rem;
+}
+.properties-dave-grid-col-3-wrapper .flex-wrapper-main .card-main-item {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1rem 0;
+    max-width: 30rem;
+    padding: 10px 20px 40px;
+    width: 32.3%;
+}
+.flex-wrapper-main .card-main-item {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    margin: 1rem .5%;
+    max-width: 30rem;
+    padding: 0.5rem;
+    width: 32.3%;
+}
+.properties-dave-grid-col-3-wrapper .flex-wrapper-main .card-main-item .top-card-holder-wrapper {
+    align-items: flex-end;
+    display: flex;
+    height: 234px;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 305px;
+    width: 100%;
+}
+.properties-dave-grid-col-3-wrapper .flex-wrapper-main .card-main-item .bottom-card-holder-wrapper {
+    margin: 1rem 0;
+}
+.flex-wrapper-main .card-main-item .bottom-card-holder-wrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+}
+.properties-dave-grid-col-3-wrapper .flex-wrapper-main .card-main-item .bottom-card-holder-wrapper .title-wrapper {
+    color: #3c3c3c;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: -.06rem;
+    margin: calc(-0.4rem - 0.14286em) 0 5px;
+    min-height: 2rem;
+    text-align: center;
+}
+.flex-wrapper-main .card-main-item .bottom-card-holder-wrapper .title-wrapper {
+    color: #3c3c3c;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    height: 3rem;
+    line-height: 24px;
+    text-align: center;
+}
+h3, h4 {
+    font-weight: 700;
+    line-height: 1.28571429em;
+    margin: calc(2rem - 0.14286em) 0 1rem;
+    padding: 0;
+}
+h1, h2, h3, h4, h5 {
+    font-family: Larsseit,Basis Grotesque,Helvetica Neue,Lucida Grande,Arial;
+}
+blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
+    margin: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+.properties-dave-grid-col-3-wrapper .flex-wrapper-main .card-main-item .bottom-card-holder-wrapper .description-wrapper {
+    color: #505050;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    min-height: 7rem;
+    text-align: center;
+}
+.properties-dave-grid-col-3-wrapper .description-wrapper {
+    align-items: center;
+    display: flex;
+    margin: 0 auto;
+    max-width: 64.75rem;
+    padding: 0.5rem 1rem 1rem;
+    width: auto;
+}
+.properties-dave-grid-col-3-wrapper .flex-wrapper-main .card-main-item .top-card-holder-wrapper .icon {
+    -o-object-fit: contain;
+    object-fit: contain;
+}
+.flex-wrapper-main .card-main-item .top-card-holder-wrapper img {
+    height: 14rem;
+    margin: 0 auto;
+    -o-object-fit: contain;
+    object-fit: contain;
+}
+section.show img {
+    visibility: visible;
+}
+section img {
+    visibility: hidden;
+}
+img, video {
+    height: auto;
+    max-width: 100%;
+    border-radius: 50%;
+}
+audio, canvas, embed, iframe, img, object, svg, video {
+    display: block;
+}

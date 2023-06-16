@@ -1,0 +1,77 @@
+.flex-dave-layout-main_inner {
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    margin: 1rem auto;
+    max-width: 64.75rem;
+}
+.flex-dave-layout-main_inner .flex-dave-wrapper_right {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    width: 100%;
+}
+.flex-dave-layout-main_inner .flex-dave-wrapper_right .image_section_assets {
+    height: 320px;
+    margin: 0 auto;
+    max-width: 455px;
+}
+.flex-dave-layout-main_inner .flex-dave-wrapper_right .image_wrapper-right {
+    align-items: center;
+    display: flex;
+    height: 362px;
+    justify-content: center;
+    max-width: 494px;
+    width: 100%;
+}
+section.show img {
+    visibility: visible;
+}
+.w-full {
+    width: 100%;
+}
+section img {
+    visibility: hidden;
+}
+img, video {
+    height: auto;
+    max-width: 100%;
+}
+.flex-dave-layout-main_inner .flex-dave-wrapper_left {
+    padding: 1rem;
+    width: 100%;
+}
+.flex-dave-layout-main_inner .flex-dave-wrapper_left .text-inner-wrapper-main .header-title-right {
+    color: #3c3c3c;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 58px;
+}
+h3, h4 {
+    font-weight: 700;
+    line-height: 1.28571429em;
+    margin: calc(2rem - 0.14286em) 0 1rem;
+    padding: 0;
+}
+h1, h2, h3, h4, h5 {
+    font-family: Larsseit,Basis Grotesque,Helvetica Neue,Lucida Grande,Arial;
+}
+blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
+    margin: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+.flex-dave-layout-main_inner .flex-dave-wrapper_left .description-paragraph {
+    color: #505050;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px;
+    margin: 1rem 0;
+}
+.flex-dave-layout-main_inner .flex-dave-wrapper_left .container-main-wrapper-holder, .flex-dave-layout-main_inner .flex-dave-wrapper_left .description-paragraph .description-paragraph_text_inner, .flex-dave-layout-main_inner .flex-dave-wrapper_left .description-paragraph .paragraph-wrapper {
+    margin: 1rem 0;
+}
