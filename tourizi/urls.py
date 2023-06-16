@@ -31,6 +31,7 @@ urlpatterns = [
     path('listado_usuarios/', ListadoUsuario.as_view(), name ='listar_usuarios'),
     path('registrar_usuario/', signup.as_view(), name = 'registrar_usuario'),
     path('login/', Login.as_view(), name = 'login'),
+    #path('servicio/', views.crearservicio, name='servicio')
 ] 
 
 
