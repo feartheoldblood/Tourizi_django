@@ -24,13 +24,18 @@ from django.http import HttpResponseRedirect
 def home(request):
     return render(request, 'home.html')
 
+def somos(request):
+    return render(request, 'somos.html')
+
+def lugares(request):
+    return render(request, 'lugares.html')
 
 
 class Login(FormView):
     template_name = 'login.html'
     form_class = FormularioLogin
     #model = UsuarioPersonalizado
-    success_url = reverse_lazy('servicio')
+    success_url = reverse_lazy('home')
 
     @method_decorator(csrf_protect)
     @method_decorator(never_cache)
