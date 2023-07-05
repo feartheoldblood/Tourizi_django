@@ -60,4 +60,16 @@ class Servicio(models.Model):
     detallesadicionales = models.TextField(blank=True)
     incluircomida = models.BooleanField(default=False)
 
+class Catalogo(models.Model):
+    lugar = models.CharField(max_length=100)
+    precio = models.TextField(max_length=100)
+
+class Pago(models.Model):
+    titular = models.TextField(max_length=100)
+    monto = models.TextField(max_length=100)
+
+class Guia(models.Model):
+    nombre = models.TextField(max_length=100)
+    cantidad = models.TextField(max_length=100)
+
 
