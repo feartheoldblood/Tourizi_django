@@ -49,27 +49,46 @@ class UsuarioPersonalizado(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['nombre', 'apellido']
 
+class Catalogo(models.Model):
+    lugar = models.CharField(max_length=100)
+    precio = models.TextField(max_length=100)  
+
+class Horario(models.Model):
+    dia = models.DateField(max_length=100)
+    horaInicio = models.TimeField(max_length=100)
+    horaFin = models.TimeField(max_length=100)
+
+class Guia(models.Model):
+    cantidadGuias = models.IntegerField()
+
 class Servicio(models.Model):
     nombre = models.CharField(max_length=100)
     precio = models.TextField(blank=True)
     ruta = models.TextField(blank=True)
-    HoraInicio = models.TimeField(null=True, blank=True)
-    HoraFin = models.TimeField(null=True, blank=True)
+    horario = models.ForeignKey(Horario, null=True, on_delete=models.CASCADE)
     userUsuarioCustom = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     cantidadpasajeros = models.TextField(blank=True, null=True)
     detallesadicionales = models.TextField(blank=True)
     incluircomida = models.BooleanField(default=False)
+    catalogo = models.ForeignKey(Catalogo, null=True, on_delete=models.CASCADE)
+    cantidadGuias = models.ForeignKey(Guia, null=True, on_delete=models.CASCADE)
 
-class Catalogo(models.Model):
-    lugar = models.CharField(max_length=100)
-    precio = models.TextField(max_length=100)
 
 class Pago(models.Model):
     titular = models.TextField(max_length=100)
     monto = models.TextField(max_length=100)
 
-class Guia(models.Model):
+
+class Rutas(models.Model):
     nombre = models.TextField(max_length=100)
-    cantidad = models.TextField(max_length=100)
+    lugares = models.TextField(max_length=100)
+
+class Reserva(models.Model):
+    userUsuarioCustom = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    Ruta = models.ForeignKey(Rutas, null=True, on_delete=models.CASCADE)
+    Pago = models.ForeignKey(Pago, null=True, on_delete=models.CASCADE)
+
+
+    
 
 

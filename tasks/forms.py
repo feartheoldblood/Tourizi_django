@@ -100,7 +100,7 @@ class FormularioUsuario(forms.ModelForm):
 class ServicioForm(forms.ModelForm):
     class Meta:
         model= Servicio
-        fields= ('nombre', 'userUsuarioCustom', 'precio', 'ruta', 'HoraInicio', 'HoraFin', 'cantidadpasajeros'
+        fields= ('nombre', 'userUsuarioCustom', 'precio', 'ruta', 'cantidadpasajeros'
         ,'detallesadicionales','incluircomida')
         widget = {
             'nombre': forms.TextInput(
@@ -125,18 +125,6 @@ class ServicioForm(forms.ModelForm):
                 attrs = {
                 'class' : 'form-control',
                 'placeholder': 'ruta',
-                }
-            ),
-            'HoraInicio': forms.TimeInput(
-                attrs = {
-                'class' : 'form-control',
-                'placeholder': 'HoraInicio',
-                }
-            ),
-            'HoraFin': forms.TimeInput(
-                attrs = {
-                'class' : 'form-control',
-                'placeholder': 'HoraFin',
                 }
             ),
             'cantidadpasajeros': forms.TextInput(
