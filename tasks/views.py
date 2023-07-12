@@ -1,26 +1,23 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import login, logout, authenticate, get_user_model
+from django.contrib.auth import login, logout, authenticate, get_user_model, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
 from django.http.response import HttpResponse, JsonResponse
 from .models import Servicio, UsuarioPersonalizado
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.views.generic import CreateView, ListView, UpdateView, DeleteView
-from .forms import FormularioUsuario, FormularioLogin, ServicioForm
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView, View
+from .forms import FormularioUsuario, FormularioLogin, ServicioForm, CambiarPasswordForm
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponseRedirect
-
-#from django.contrib.auth.decorators import login_required
-
-# Create your views here.
-
-
-
+from django.contrib.auth.mixins import LoginRequiredMixin
+from tasks.mixins import (
+    LoginYSuperStaffMixin, ValidarPermisosMixin, LoginMixin
+)
 def home(request):
     return render(request, 'home.html')
 
@@ -30,11 +27,9 @@ def somos(request):
 def lugares(request):
     return render(request, 'lugares.html')
 
-
 class Login(FormView):
     template_name = 'login.html'
     form_class = FormularioLogin
-    #model = UsuarioPersonalizado
     success_url = reverse_lazy('home')
 
     @method_decorator(csrf_protect)
@@ -43,32 +38,33 @@ class Login(FormView):
         if request.user.is_authenticated:
             return HttpResponseRedirect(self.get_success_url())
         else:
-            return super(Login,self).dispatch(request,*args,**kwargs)
+            return super().dispatch(request, *args, **kwargs)
 
-    def form_valid(self,form):
-        login(self.request,form.get_user())
-        return super(Login, self).form_valid(form)
-    
+    def form_valid(self, form):
+        login(self.request, form.get_user())
+        return super().form_valid(form)
 
 
 class ListadoUsuario(ListView):
     model = UsuarioPersonalizado
     template_name = 'listar_usuario.html'
-    
+
     def get_queryset(self):
-        return self.model.objects.filter(is_active = True)
+        return self.model.objects.filter(is_active=True)
+
 
 class signup(CreateView):
-        model = UsuarioPersonalizado
-        form_class = FormularioUsuario
-        template_name = 'crear_usuario.html'
-        success_url = reverse_lazy('servicio')
-        
+    model = UsuarioPersonalizado
+    form_class = FormularioUsuario
+    template_name = 'crear_usuario.html'
+    success_url = reverse_lazy('servicio')
+
+
 class crearservicio(CreateView):
-        model = Servicio
-        form_class = ServicioForm
-        template_name = 'create_servicio.html'
-        success_url = reverse_lazy('tasks')
+    model = Servicio
+    form_class = ServicioForm
+    template_name = 'create_servicio.html'
+    success_url = reverse_lazy('tasks')
 
 
 def tasks(request):
@@ -80,10 +76,28 @@ def signout(request):
     return redirect('home')
 
 
+class CambiarPassword(LoginMixin, View):
+    template_name = 'cambiar_password.html'
+    form_class = CambiarPasswordForm
+    success_url = reverse_lazy('home')
 
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name, {'form': self.form_class})
 
-
- 
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            user = UsuarioPersonalizado.objects.filter(id=request.user.id)
+            if user.exists():
+                user = user.first()
+                user.set_password(form.cleaned_data.get('password1'))
+                user.save()
+                logout(request)
+                return redirect(self.success_url)
+            return redirect(self.success_url)
+        else:
+            form = self.form_class(request.POST)
+            return render(request, self.template_name, {'form': form})
 
 
 

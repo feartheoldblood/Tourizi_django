@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from .models import Servicio, UsuarioPersonalizado
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 
 class FormularioLogin(AuthenticationForm):
     def __init__(self, *args, **kwargs):
@@ -10,6 +10,40 @@ class FormularioLogin(AuthenticationForm):
         self.fields['username'].widget.attrs['placeholder'] = 'Nombre de Usuario'
         self.fields['password'].widget.attrs['class']= 'form-control'
         self.fields['password'].widget.attrs['placeholder'] = 'Contraseña'
+
+class CambiarPasswordForm(forms.Form):
+    password1 = forms.CharField(label = 'Contraseña',widget = forms.PasswordInput(
+        attrs = {
+            'class': 'form-control',
+            'placeholder': 'Ingrese su nueva contraseña...',
+            'id': 'password1',
+            'required':'required',
+        }
+    ))
+
+    password2 = forms.CharField(label = 'Contraseña de Confirmación', widget = forms.PasswordInput(
+        attrs={
+            'class': 'form-control',
+            'placeholder': 'Ingrese nuevamente la nueva contraseña...',
+            'id': 'password2',
+            'required': 'required',
+        }
+    ))
+
+    def clean_password2(self):
+        """ Validación de Contraseña
+
+        Metodo que valida que ambas contraseñas ingresadas sean igual, esto antes de ser encriptadas
+        y guardadas en la base dedatos, Retornar la contraseña Válida.
+
+        Excepciones:
+        - ValidationError -- cuando las contraseñas no son iguales muestra un mensaje de error
+        """
+        password1 = self.cleaned_data.get('password1')
+        password2 = self.cleaned_data.get('password2')
+        if password1 != password2:
+            raise forms.ValidationError('Contraseñas no coinciden!')
+        return password2
 
 class FormularioUsuario(forms.ModelForm):
     """Formulario de registro de un usuario en la bd"""

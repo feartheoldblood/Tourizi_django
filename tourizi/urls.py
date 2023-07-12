@@ -17,8 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth.decorators import login_required
-from tasks.views import ListadoUsuario, signup, Login, crearservicio
+from tasks.views import ListadoUsuario, signup, Login, crearservicio, CambiarPassword
 from tasks import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,8 +34,10 @@ urlpatterns = [
     path('listado_usuarios/', ListadoUsuario.as_view(), name ='listar_usuarios'),
     path('registrar_usuario/', signup.as_view(), name = 'registrar_usuario'),
     path('login/', Login.as_view(), name = 'login'),
-    path('crear_servicio/', crearservicio.as_view(), name = 'servicio' )
+    path('crear_servicio/', crearservicio.as_view(), name = 'servicio' ),
+    path('cambiar_password/',CambiarPassword.as_view(), name='cambiar_password'),
     #path('servicio/', views.crearservicio, name='servicio')
+
 ] 
 
 
