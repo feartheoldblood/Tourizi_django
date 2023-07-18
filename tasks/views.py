@@ -18,6 +18,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from tasks.mixins import (
     LoginYSuperStaffMixin, ValidarPermisosMixin, LoginMixin
 )
+
 def home(request):
     return render(request, 'home.html')
 
@@ -102,5 +103,9 @@ class CambiarPassword(LoginMixin, View):
 
 
 
+def miraflores(request):
+
+
+    return render(request, 'show_Miraflores.html')
 
   

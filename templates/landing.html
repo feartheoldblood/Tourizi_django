@@ -1,20 +1,21 @@
+{% extends 'base.html' %}
 
-
-<h1>Productos disponibles</h1>
-
-{% for product in products %}
-    <div>
-        <h2>{{ product.name }}</h2>
-        
-        <p>Precio: S/.{{ product.price }}</p>
-        <form action="{% url 'create-checkout-session' product.id %}" method="post" data-product-id="{{ product.id }}">
-        
-            {% csrf_token %}
-            <input type="submit" value="Comprar">
-        </form>
+{% block content %}
+<div class="product-list">
+    <h1 class="title">Sitios turísticos disponibles</h1>
+    <div class="product-container">
+        {% for product in products %}
+        <div class="product-item">
+            <h2>{{ product.name }}</h2>
+            <p>Precio: USD {{ product.price }}</p>
+            <form action="{% url 'create-checkout-session' product.id %}" method="post" data-product-id="{{ product.id }}">
+                {% csrf_token %}
+                <input type="submit" value="Comprar" {% if has_reached_limit %}disabled{% endif %}>
+            </form>
+        </div>
+        {% endfor %}
     </div>
-    
-{% endfor %}
+</div>
 
 <script src="https://js.stripe.com/v3/"></script>
 <script>
@@ -46,3 +47,30 @@
         });
     });
 </script>
+
+<style>
+    .product-list {
+        text-align: center;
+    }
+
+    .title {
+        margin-top: 100px; /* Ajusta el valor según la separación deseada */
+    }
+    
+    .product-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .product-item {
+        margin: 10px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 300px;
+        text-align: center;
+    }
+</style>
+{% endblock %}
+

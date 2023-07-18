@@ -14,6 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth.decorators import login_required
@@ -27,6 +28,9 @@ from products.views import (
     stripe_webhook,
     StripeIntentView
 )
+from django.conf import settings
+from django.conf.urls.static import static
+#from django.shortcuts import redirect
 
 
 urlpatterns = [
@@ -51,6 +55,14 @@ urlpatterns = [
     path('webhooks/stripe/', stripe_webhook, name='stripe-webhook'),
     path('cancel/', CancelView.as_view(), name='cancel'),
     path('success/', SuccessView.as_view(), name='success'),
+    path('Miraflores/', views.miraflores, name='miraflores'),
 ] 
+# Otras rutas de URL de tu proyecto
 
-
+#if settings.DEBUG:
+#    urlpatterns += static(settings.MEDIA_URL, #document_root=settings.MEDIA_ROOT)
+#def redirect_to_landing(request):
+#    if request.user.is_authenticated:
+#        return redirect('landing-page')
+#    else:
+#        return redirect('login')

@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+  }
+  
+  .summary {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .summary h2 {
+    margin-bottom: 10px;
+  }
+  
+  .image {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .image img {
+    max-width: 100%;
+    max-height: 100%;
+  }
