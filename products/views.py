@@ -7,6 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse, HttpResponse
 from django.views import View
 from .models import Product
+from django.shortcuts import render
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -147,3 +148,14 @@ class StripeIntentView(View):
             })
         except Exception as e:
             return JsonResponse({ 'error': str(e) })
+        
+
+#mostrar mapas
+
+
+# Create your views here.
+def kenedy(request):
+    return render(request, 'show_Kennedy.html')
+
+def playa(request):
+    return render(request, 'show_Playa.html')
