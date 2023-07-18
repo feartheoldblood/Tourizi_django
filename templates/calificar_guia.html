@@ -1,0 +1,61 @@
+{% load static %}
+{% extends 'base.html' %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{% static 'calificar_guia.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+  <div class="taxi-review">
+        <div class="form">
+            <img src="{% static 'logo.png' %}" alt="Foto del taxista" class="profile-pic">
+            <h2>Nombre de guia</h2>
+            <div class="rating">
+            <span class="star" onclick="rate(1)">&#9733;</span>
+            <span class="star" onclick="rate(2)">&#9733;</span>
+            <span class="star" onclick="rate(3)">&#9733;</span>
+            <span class="star" onclick="rate(4)">&#9733;</span>
+            <span class="star" onclick="rate(5)">&#9733;</span>
+            </div>
+            <button onclick="submitReview()">Enviar calificación</button>
+        </div>
+    </div>
+
+  <script>
+    function rate(stars) {
+      $('.star').removeClass('selected');
+      for (let i = 0; i < stars; i++) {
+        $('.star').eq(i).addClass('selected');
+      }
+    }
+
+    function submitReview() {
+      const rating = $('.selected').length;
+      const guia_id = 1; // Reemplaza con el ID del taxista correspondiente
+
+      $.ajax({
+        type: 'POST',
+        url: '/calificar_guia/',
+        data: {
+          rating: rating,
+          guia_id: guia_id
+        },
+        success: function(response) {
+          console.log(response.message);
+          // Aquí puedes mostrar un mensaje de éxito o realizar alguna acción adicional
+        },
+        error: function(xhr, status, error) {
+          console.error(xhr.responseText);
+          // Aquí puedes manejar el error de alguna manera
+        }
+      });
+    }
+  </script>
+</body>
+</html>
