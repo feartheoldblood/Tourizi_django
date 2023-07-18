@@ -19,6 +19,8 @@ from django.urls import path
 from django.contrib.auth.decorators import login_required
 from tasks.views import ListadoUsuario, signup, Login, crearservicio, CambiarPassword
 from tasks import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -37,7 +39,9 @@ urlpatterns = [
     path('crear_servicio/', crearservicio.as_view(), name = 'servicio' ),
     path('cambiar_password/',CambiarPassword.as_view(), name='cambiar_password'),
     #path('servicio/', views.crearservicio, name='servicio')
+    path('calificar_guia/', views.rate_guia, name='rate_guia'),
 
 ] 
 
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 

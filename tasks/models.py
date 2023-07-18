@@ -59,7 +59,24 @@ class Horario(models.Model):
     horaFin = models.TimeField(max_length=100)
 
 class Guia(models.Model):
-    cantidadGuias = models.IntegerField()
+    nombre = models.CharField(max_length=100)
+    foto = models.ImageField(upload_to="fotos",null=True)
+    calificacion_promedio = models.DecimalField(max_digits=3, decimal_places=2, default=0.00)
+    total_calificaciones = models.PositiveIntegerField(default=0)
+    nombre_servicio = models.ForeignKey('Servicio', on_delete=models.CASCADE, null=True)
+
+    def actualizar_calificacion(self, nueva_calificacion):
+        # Calcular el promedio de calificaciones actualizado
+        nuevo_total_calificaciones = self.total_calificaciones + 1
+        nuevo_promedio = (
+            (self.calificacion_promedio * self.total_calificaciones) + nueva_calificacion
+        ) / nuevo_total_calificaciones
+
+        # Actualizar los campos del taxista
+        self.calificacion_promedio = nuevo_promedio
+        self.total_calificaciones = nuevo_total_calificaciones
+        self.save()
+
 
 class Servicio(models.Model):
     nombre = models.CharField(max_length=100)
