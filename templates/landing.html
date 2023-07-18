@@ -12,6 +12,10 @@
                 {% csrf_token %}
                 <input type="submit" value="Comprar" {% if has_reached_limit %}disabled{% endif %}>
             </form>
+            <form action="{% url 'delete2' product.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+            </form>
         </div>
         {% endfor %}
     </div>
@@ -73,4 +77,5 @@
     }
 </style>
 {% endblock %}
+
 

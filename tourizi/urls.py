@@ -26,10 +26,12 @@ from products.views import (
     SuccessView,
     CancelView,
     stripe_webhook,
-    StripeIntentView
+    StripeIntentView,
+    delete2,
 )
 from django.conf import settings
 from django.conf.urls.static import static
+
 #from django.shortcuts import redirect
 
 
@@ -56,6 +58,7 @@ urlpatterns = [
     path('cancel/', CancelView.as_view(), name='cancel'),
     path('success/', SuccessView.as_view(), name='success'),
     path('Miraflores/', views.miraflores, name='miraflores'),
+    path('delete2/<int:pk>', delete2, name='delete2'),
 ] 
 # Otras rutas de URL de tu proyecto
 

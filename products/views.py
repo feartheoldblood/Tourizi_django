@@ -8,8 +8,8 @@ from django.http import JsonResponse, HttpResponse
 from django.views import View
 from .models import Product
 from django.http import HttpResponseRedirect
-from django.shortcuts import render,redirect
-
+from django.shortcuts import render,redirect, get_object_or_404
+ 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
@@ -150,3 +150,8 @@ class StripeIntentView(View):
             })
         except Exception as e:
             return JsonResponse({ 'error': str(e) })
+
+def delete2(request,pk):
+    product = get_object_or_404(Product, id=pk)
+    product.delete()
+    return redirect('landing-page')
