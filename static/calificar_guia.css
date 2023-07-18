@@ -1,0 +1,51 @@
+.taxi-review {
+    display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+  }
+  
+  .profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+  
+  .rating {
+    font-size: 30px;
+    margin-top: 20px;
+  }
+  
+  .star {
+    cursor: pointer;
+    color: gold;
+  }
+  
+  button {
+    margin-top: 20px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+
+  button:hover{
+    background-color: #45a049;
+  }
+
+  body {
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }

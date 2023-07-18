@@ -18,6 +18,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from tasks.mixins import (
     LoginYSuperStaffMixin, ValidarPermisosMixin, LoginMixin
 )
+from django.http import JsonResponse
+from .models import Guia
 
 def home(request):
     return render(request, 'home.html')
@@ -27,6 +29,23 @@ def somos(request):
 
 def lugares(request):
     return render(request, 'lugares.html')
+
+def rate_guia(request):
+    if request.method == 'POST':
+        rating = request.POST.get('rating')
+        guia_id = request.POST.get('guia_id')
+
+        try:
+            guia = Guia.objects.get(id=guia_id)
+            guia.actualizar_calificacion(float(rating))
+        except Guia.DoesNotExist:
+            return JsonResponse({'error': 'Guia no encontrado.'}, status=404)
+
+        # Devuelve una respuesta JSON con un mensaje de éxito
+        return JsonResponse({'message': 'Calificación guardada exitosamente.'})
+
+    # Si la solicitud no es POST, devuelve una respuesta JSON con un mensaje de error
+    return JsonResponse({'error': 'Método no permitido.'}, status=405)
 
 class Login(FormView):
     template_name = 'login.html'

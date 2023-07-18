@@ -59,6 +59,7 @@ urlpatterns = [
     path('success/', SuccessView.as_view(), name='success'),
     path('Miraflores/', views.miraflores, name='miraflores'),
     path('delete2/<int:pk>', delete2, name='delete2'),
+    path('calificar_guia/', views.rate_guia, name='rate_guia'),
 ] 
 # Otras rutas de URL de tu proyecto
 
